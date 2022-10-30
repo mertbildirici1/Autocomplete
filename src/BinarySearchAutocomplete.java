@@ -112,9 +112,32 @@ public class BinarySearchAutocomplete implements Autocompletor {
 			return new ArrayList<>();
 		}
 
+		else if (k == 0) {
+			return new ArrayList<Term>();
+		}
+
+		PriorityQueue<Term> npq = new PriorityQueue<Term>(Comparator.comparing(Term::getWeight));
+		for (int c = first; c<=last; c++) {
+			if (npq.size()<k) {
+				npq.add(myTerms[c]);
+			}
+			else if (npq.peek().getWeight()< myTerms[c].getWeight()){
+				npq.remove();
+				npq.add(myTerms[c]);
+			}
+		}
+
+		int numResults = Math.min(k, npq.size());
+		LinkedList<Term> ret = new LinkedList<>();
+		for (int r = 0; r < numResults; r++) {
+			ret.addFirst(npq.remove());
+		}
+		return ret;
+
+
 		// write code here for P5 assignment
 
-		return null;
+		
 	
 	}
 
