@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class HashListAutocomplete implements Autocompletor {
     private static final int MAX_PREFIX = 10;
-    private Map<String, List<Term>> myMap;
+    private Map<String, List<Term>> myMap = new HashMap<String, List<Term>>();
     private int mySize = 0;
 
     public HashListAutocomplete(String[] terms, double[] weights){
@@ -41,7 +41,7 @@ public class HashListAutocomplete implements Autocompletor {
     @Override
     public void initialize(String[] terms, double[] weights) {
           mySize = 0;
-          myMap = new HashMap<>();
+          myMap.clear();
           for (int i = 0; i < terms.length; i++) {
             String t = terms[i];
             double w = weights[i];
