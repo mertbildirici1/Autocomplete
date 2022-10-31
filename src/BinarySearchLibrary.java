@@ -59,9 +59,6 @@ public class BinarySearchLibrary {
 			else  {
 				high = mid;
 			}
-			// TODO: Complete code here. Consider the following invariant:
-			// foundAt should be least index that matches target outside of [low, high] (-1 if none)
-			// indices less than foundAt that match target should be in [low, high]
 		}
 		if (comp.compare(list.get(high), target) == 0) {
 			return high;
